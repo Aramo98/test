@@ -1,0 +1,705 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+:root {
+    --firstColor: #172139;
+    --secondColor: #ff6600;
+}
+
+body {
+    overflow: hidden;
+}
+
+@font-face {
+    font-family: FontOne;
+    src: url(../font/FuturaCyrillicBold.ttf);
+}
+
+@font-face {
+    font-family: FontTwo;
+    src: url(../font/FuturaCyrillicLight.ttf);
+}
+
+@font-face {
+    font-family: FontThree;
+    src: url(../font/FuturaCyrillicMedium.ttf);
+}
+
+header {
+    padding: 15px;
+    background-color: #eae8e6;
+}
+
+.containerBlock {
+    height: 680px;
+    width: 200%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.containerBlock>.leftNavbar {
+    width: 250px;
+    height: 60%;
+    position: relative;
+    top: 15px;
+    background-color: aliceblue;
+}
+
+.containerBlock .leftNavbar>nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    overflow: hidden;
+}
+
+.containerBlock .leftNavbar>nav>ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    width: 100%;
+    height: 0px;
+    transition: all 0.5s ease;
+    overflow: hidden;
+}
+
+.containerBlock .leftNavbar>nav>ul.active {
+    height: 330px;
+}
+
+
+
+.containerBlock .leftNavbar>nav>ul>li {
+    padding: 15px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 15px;
+    transition: all 0.5s ease;
+    width: 150%;
+    border-bottom: 1px solid #ccc;
+}
+
+.containerBlock .leftNavbar>nav>ul>li:hover {
+    background-color: var(--firstColor);
+
+}
+
+.containerBlock .leftNavbar>nav>ul>li>a {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    gap: 15px;
+    text-decoration: none;
+    color: var(--firstColor);
+    font-family: FontTwo;
+    transition: all 0.5s ease;
+}
+
+.containerBlock .leftNavbar>nav>ul>li:hover a {
+    color: #fff;
+}
+
+.containerBlock .leftNavbar>nav>button {
+    color: var(--secondColor);
+    padding: 10px 25px;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    background: none;
+    transition: all 0.5s ease;
+    font-family: FontTwo;
+}
+
+.containerBlock .leftNavbar>nav>button:hover {
+    transform: translateX(-15px);
+}
+
+.containerBlock .leftNavbar>nav>button>img {
+    transform: rotate(-90deg);
+    transition: all 0.5s ease;
+}
+
+.containerBlock .leftNavbar>nav>button.active img {
+    transform: rotate(90deg);
+}
+
+.locationBlock {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 15px;
+    gap: 15px;
+
+}
+
+.locationBlock>.headerBlock {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+    flex-direction: column;
+}
+
+.locationBlock>.headerBlock>.header>h3 {
+    font-family: FontOne;
+}
+
+.locationBlock>.headerBlock .buttonBlock {
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 15px;
+    padding: 0;
+}
+
+.locationBlock>.headerBlock .buttonBlock>button {
+    padding: 10px 15px;
+    font-family: FontOne;
+    border: none;
+    border-radius: 15px;
+}
+
+.locationBlock>.headerBlock .bigBtn>button {
+    padding: 10px 15px;
+    font-size: 25px;
+    font-family: FontTwo;
+    border: none;
+    border-radius: 15px;
+}
+
+.modalBlock {
+    position: absolute;
+    display: flex;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s ease;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
+    z-index: 1;
+}
+
+.modalBlock.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.sliderBlock {
+    width: 100%;
+    height: 750px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
+}
+
+.slider {
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 100%;
+
+}
+
+.modalBlock .formBlock {
+    width: 400px;
+    height: 540px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #fff;
+    padding: 15px;
+    transform: translateY(-15px);
+    opacity: 0;
+    transition: all 0.5s;
+    visibility: hidden;
+
+}
+
+.modalBlock.active .formBlock {
+    transform: translateY(0px);
+    opacity: 1;
+    visibility: visible;
+    display: flex;
+}
+
+.modalBlock.active .formBlock>h3 {
+    font-family: FontOne;
+}
+
+
+.modalBlock .formBlock>form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.modalBlock .formBlock>form .inputBox {
+    width: 350px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+}
+
+.modalBlock .formBlock>form .inputBox>input {
+    width: 100%;
+    height: 100%;
+    color: #ccc;
+    padding: 2px 14px 2px 14px;
+    ;
+    border: 1px solid #eae8e6;
+    outline: none;
+    position: relative;
+}
+
+.modalBlock .formBlock>form .inputBox>.iconBlock {
+    position: absolute;
+    right: 15px;
+    color: var(--secondColor);
+}
+
+
+.modalBlock .formBlock>form .checkBoxes {
+    width: 100%;
+    height: 45px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 15px;
+    position: relative;
+}
+
+.modalBlock .formBlock>form .checkBoxes>.check {
+    position: relative;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.modalBlock .formBlock>form .checkBoxes>.check>input[type=checkbox] {
+    appearance: none;
+    border: 2px solid #ccc;
+    width: 60px;
+    height: 25px;
+    border-radius: 15px;
+    position: relative;
+}
+
+.modalBlock .formBlock>form .checkBoxes>.check>.toggle {
+
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: var(--secondColor);
+    border-radius: 50%;
+    top: 2px;
+    transition: all 0.5s ease;
+    left: 5px;
+}
+
+.modalBlock .formBlock>form .checkBoxes>.check>input[type=checkbox]:checked+.toggle {
+    left: 35px;
+}
+
+
+.modalBlock .formBlock>form>.buttonBlock {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.modalBlock .formBlock>form>.buttonBlock>button {
+    border: none;
+
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.modalBlock .formBlock>form>.buttonBlock>button:nth-child(1) {
+    background-color: var(--firstColor);
+    color: #eae8e6;
+    padding: 10px 25px;
+    font-family: FontTwo;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.modalBlock .formBlock>form>.buttonBlock>button:nth-child(2) {
+    padding: 10px 25px;
+    font-family: FontTwo;
+    color: var(--firstColor);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border: 1px solid var(--firstColor);
+}
+
+.locationLists {
+    width: 100%;
+    height: auto;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.locationLists .locationB {
+    width: 500px;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.locationLists .locationB .locationHeader {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 50px;
+    width: 100%;
+    background-color: #eae8e6;
+    font-family: FontOne;
+    gap: 9px;
+}
+
+.locationLists .locationB .locationHeader .icon,
+.locationLists .locationB .locationHeader .elipsisIcon {
+    width: 25px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.locationLists .locationB .locationHeader .icon {
+    background-color: var(--secondColor);
+    color: #eae8e6;
+    border-radius: 50%;
+    transition: all 0.5s ease;
+}
+
+.locationLists .locationB .locationHeader .icon.active {
+    transform: rotate(-45deg);
+}
+
+.locationLists .locationB .locationHeader .elipsisIcon {
+    color: var(--secondColor);
+}
+
+.locationList {
+    width: 100%;
+    height: 0;
+    overflow: hidden;
+    transition: all 0.5s ease;
+    background-color: #eae8e6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.locationLists .locationB .locationList.active {
+    height: 250px;
+}
+
+.editandDeletBtnBlock {
+    color: var(--secondColor);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.modalBlockTwo {
+    position: absolute;
+    display: flex;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s ease;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
+    z-index: 1;
+}
+
+.modalBlockTwo.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modalBlockTwo .formBlockTwo {
+    width: 430px;
+    height: 590px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #fff;
+    padding: 15px;
+    transform: translateY(-15px);
+    opacity: 0;
+    transition: all 0.5s;
+    visibility: hidden;
+}
+
+
+.modalBlockTwo.active .formBlockTwo {
+    transform: translateY(0px);
+    opacity: 1;
+    visibility: visible;
+}
+
+.modalBlockTwo.active .formBlockTwo>h3 {
+    font-family: FontOne;
+}
+
+
+.modalBlockTwo .formBlockTwo>form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.modalBlockTwo .formBlockTwo>form .inputBox {
+    width: 350px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+}
+
+.modalBlockTwo .formBlockTwo>form .inputBox>input {
+    width: 100%;
+    height: 100%;
+    color: #ccc;
+    padding: 2px 14px 2px 14px;
+    ;
+    border: 1px solid #eae8e6;
+    outline: none;
+    position: relative;
+}
+
+.modalBlockTwo .formBlockTwo>form .inputBox>.iconBlock {
+    position: absolute;
+    right: 15px;
+    color: var(--secondColor);
+}
+
+
+.modalBlockTwo .formBlockTwo>form .checkBoxes {
+    width: 100%;
+    height: 45px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 15px;
+    position: relative;
+}
+
+.modalBlockTwo .formBlockTwo>form .checkBoxes>.check {
+    position: relative;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.modalBlockTwo .formBlockTwo>form .checkBoxes>.check>input[type=checkbox] {
+    appearance: none;
+    border: 2px solid #ccc;
+    width: 60px;
+    height: 25px;
+    border-radius: 15px;
+    position: relative;
+}
+
+.modalBlockTwo .formBlockTwo>form .checkBoxes>.check>.toggle {
+
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: var(--secondColor);
+    border-radius: 50%;
+    top: 2px;
+    transition: all 0.5s ease;
+    left: 5px;
+}
+
+.modalBlockTwo .formBlockTwo>form .checkBoxes>.check>input[type=checkbox]:checked+.toggle {
+    left: 35px;
+}
+
+
+.modalBlockTwo .formBlockTwo>form>.buttonBlock {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.modalBlockTwo .formBlockTwo>form>.buttonBlock>button {
+    border: none;
+
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.modalBlockTwo .formBlockTwo>form>.buttonBlock>button:nth-child(1) {
+
+    border: 1px solid var(--firstColor);
+    padding: 10px 25px;
+    font-family: FontTwo;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.modalBlockTwo .formBlockTwo>form>.buttonBlock>button:nth-child(2) {
+    padding: 10px 25px;
+    font-family: FontTwo;
+    color: var(--firstColor);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border: 1px solid var(--firstColor);
+}
+
+.modalBlockTwo .formBlockTwo>form>.buttonBlock>button:nth-child(3) {
+    padding: 10px 29%;
+    background-color: var(--firstColor);
+    color: #eae8e6;
+}
+
+
+.settingBlock {
+    width: 100%;
+    height: 100%;
+    padding: 15px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.settingBlock .headerBlock{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.settingBlock .buttonBlock>button{
+    border: 1px solid var(--firstColor);
+    padding: 10px 5px;
+    font-family: FontTwo;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-radius: 15px;
+}
+
+.tableBlock{
+    width: 100%;
+    height: auto;
+display: flex;
+justify-content: center;
+align-items: flex-start;
+flex-direction: column;
+}
+
+.tableBlock .table{
+    width: 100%;
+    height: auto;
+    display: flex;
+justify-content: flex-start;
+align-items: flex-start;  
+flex-direction: column;
+gap: 15px;
+}
+
+.tableBlock .table>button{
+    padding: 10px 25px;
+    background-color: var(--firstColor);
+    color: #eae8e6;
+    font-family: FontTwo;
+    text-transform: uppercase;
+     border: none;
+     border-radius: 10px;
+}
+
+.tableBlock .table > table {
+        border-collapse: collapse;
+        width: 90%;
+      }
+      
+      .tableBlock .table > table  td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 4px;
+      }
+
+      .tableBlock .table > table  td input{
+        color: var(--secondColor);
+      }
+      
+      .tableBlock .table > table  tr:nth-child(even) {
+        background-color: #dddddd;
+      
+}
